@@ -12,6 +12,7 @@ development:
   adapter: mysql2
   encoding: utf8
   reconnect: false
+  host: 127.0.0.1
   database: unko_wave_development
   pool: 5
   username: root
@@ -25,6 +26,7 @@ test:
   adapter: mysql2
   encoding: utf8
   reconnect: false
+  host: 127.0.0.1
   database: unko_wave_test
   pool: 5
   username: root
@@ -35,6 +37,7 @@ production:
   adapter: mysql2
   encoding: utf8
   reconnect: false
+  host: 127.0.0.1
   database: unko_wave_production
   pool: 5
   username: root
