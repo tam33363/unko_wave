@@ -1,0 +1,20 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Latitude:</b>
+  <%= @unko_position.latitude %>
+</p>
+
+<p>
+  <b>Longitude:</b>
+  <%= @unko_position.longitude %>
+</p>
+
+<p>
+  <b>Info:</b>
+  <%= @unko_position.info %>
+</p>
+
+
+<%= link_to 'Edit', edit_unko_position_path(@unko_position) %> |
+<%= link_to 'Back', unko_positions_path %>
