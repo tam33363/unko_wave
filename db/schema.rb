@@ -14,11 +14,11 @@
 ActiveRecord::Schema.define(:version => 20130629092445) do
 
   create_table "unko_positions", :force => true do |t|
-    t.string   "latitude"
-    t.string   "longitude"
+    t.decimal  "latitude",   :precision => 18, :scale => 14
+    t.decimal  "longitude",  :precision => 18, :scale => 14
     t.string   "info"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.datetime "created_at",                                 :null => false
+    t.datetime "updated_at",                                 :null => false
   end
 
   add_index "unko_positions", ["latitude", "longitude"], :name => "position_index"

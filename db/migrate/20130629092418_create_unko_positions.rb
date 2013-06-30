@@ -1,8 +1,8 @@
 class CreateUnkoPositions < ActiveRecord::Migration
   def change
     create_table :unko_positions do |t|
-      t.string :latitude
-      t.string :longitude
+      t.decimal :latitude, :precision => 18, :scale => 14
+      t.decimal :longitude, :precision => 18, :scale => 14
       t.string :info
 
       t.timestamps

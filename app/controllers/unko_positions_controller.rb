@@ -2,7 +2,21 @@ class UnkoPositionsController < ApplicationController
   # GET /unko_positions
   # GET /unko_positions.json
   def index
-    @unko_positions = UnkoPosition.all
+
+    latitude = params[:center_latitude].to_f
+    longitude = params[:center_longitude].to_f
+
+    # 指定された座標の近傍10箇所の情報を取得する
+
+    # 検索幅
+    radius = 0.00005
+    latitude_floor = latitude - radius
+    latitude_celling = latitude + radius
+    longitude_floor = longitude - radius
+    longitude_celling = longitude + radius
+
+    sql = "SELECT * FROM unko_positions WHERE latitude > #{latitude_floor} AND latitude < #{latitude_celling} AND longitude > #{longitude_floor} AND longitude < #{longitude_celling}"
+    @unko_positions = UnkoPosition.find_by_sql(sql)
 
     respond_to do |format|
       format.html # index.html.erb
