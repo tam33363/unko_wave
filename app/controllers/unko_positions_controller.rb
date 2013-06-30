@@ -9,13 +9,14 @@ class UnkoPositionsController < ApplicationController
     # 指定された座標の近傍の情報を取得する
 
     # 検索幅
-    radius = 0.02
+    radius = 0.015
+
     latitude_floor = latitude - radius
     latitude_celling = latitude + radius
     longitude_floor = longitude - radius
     longitude_celling = longitude + radius
 
-    sql = "SELECT * FROM unko_positions WHERE latitude > #{latitude_floor} AND latitude < #{latitude_celling} AND longitude > #{longitude_floor} AND longitude < #{longitude_celling}"
+    sql = "SELECT latitude, longitude, info_type, info FROM unko_positions WHERE latitude > #{latitude_floor} AND latitude < #{latitude_celling} AND longitude > #{longitude_floor} AND longitude < #{longitude_celling}"
     @unko_positions = UnkoPosition.find_by_sql(sql)
 
     respond_to do |format|
@@ -35,26 +36,14 @@ class UnkoPositionsController < ApplicationController
     end
   end
 
-  # GET /unko_positions/new
-  # GET /unko_positions/new.json
-  def new
-    @unko_position = UnkoPosition.new
-
-    respond_to do |format|
-      format.html # new.html.erb
-      format.json { render json: @unko_position }
-    end
-  end
-
-  # GET /unko_positions/1/edit
-  def edit
-    @unko_position = UnkoPosition.find(params[:id])
-  end
-
   # POST /unko_positions
   # POST /unko_positions.json
   def create
     @unko_position = UnkoPosition.new(params[:unko_position])
+
+    # 既に同じデバイスからの入力がないか確認
+    @previous_unko_position = UnkoPosition.find_by_device_id(@unko_position.device_id)
+    @previous_unko_position.delete if !@previous_unko_position.nil?
 
     respond_to do |format|
       if @unko_position.save
