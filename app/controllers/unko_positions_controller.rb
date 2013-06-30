@@ -6,10 +6,10 @@ class UnkoPositionsController < ApplicationController
     latitude = params[:center_latitude].to_f
     longitude = params[:center_longitude].to_f
 
-    # 指定された座標の近傍10箇所の情報を取得する
+    # 指定された座標の近傍の情報を取得する
 
     # 検索幅
-    radius = 0.00005
+    radius = 0.5
     latitude_floor = latitude - radius
     latitude_celling = latitude + radius
     longitude_floor = longitude - radius
