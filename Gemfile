@@ -5,7 +5,7 @@ gem 'rails', '3.2.9'
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 
-gem 'mysql2'
+gem 'sqlite3', '~> 1.3.5'
 
 # JavaScriptエンジン。CentOS上での実行に必要
 gem 'execjs'
@@ -39,3 +39,9 @@ gem 'jquery-rails'
 
 # To use debugger
 # gem 'debugger'
+
+group :development, :test do
+  gem "rspec-rails"
+  gem "factory_girl_rails"
+end
+
